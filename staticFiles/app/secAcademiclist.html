@@ -1,0 +1,405 @@
+{% extends "layout/admin_base_layout.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}{{sname}} | {{page_path}} {% endblock %}
+
+
+{% block content %}
+
+
+<!-- School Admission -->
+<section class="content">
+
+ 
+    
+  <div class="container-fluid">
+ <div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title">Secondary Academic Student List</h3> 
+   
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
+     </div>
+    <div>
+      {% if messages %}          
+      {% for message in messages %}
+      <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+      </div>
+      {% endfor %}
+      {% endif %} </div>
+   
+  </div>
+  <!-- /.card-header -->
+
+  <div class="card-body ">
+    <div class="row">
+      <div class="col-md-12">
+
+        <form action="{% url 'academic_secAcademiclist' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+    
+         
+                 
+    
+           <div class="col-sm-2" > 
+                <!-- text input -->
+                <div class="form-group">
+              {{ getAdmDate.year|as_crispy_field }}
+                
+                <input type="submit" class="btn bg-gradient-primary" value="Search"> </div>
+           </div> 
+          
+              
+        </form>
+         
+        <table id="example1" class="table table-bordered table-striped table-hover">
+                                
+          <thead>
+            
+          <tr>
+           
+            <th>Sr.No.</th>
+            <th> Registration Number</th>
+            <th> Last Name</th>
+            <th> First Name</th>
+            <th> Father Name</th>
+            <th>Admission Date</th>
+            <th>Admission Class</th>
+
+            <th> Standard 5th Year</th>
+            <th> Standard 5th</th>
+            <th> Standard 5th Division</th>
+            <th> Standard 5th Roll No</th>
+
+            <th> Standard 6th Year</th>
+            <th> Standard 6th</th>
+            <th> Standard 6th Division</th>
+            <th> Standard 6th Roll No</th>
+
+            <th> Standard 7th Year</th>
+            <th> Standard 7th</th>
+            <th> Standard 7th Division</th>
+            <th> Standard 7th Roll No</th>
+
+            <th> Standard 8th Year</th>
+            <th> Standard 8th</th>
+            <th> Standard 8th Division</th>
+            <th> Standard 8th Roll No</th>
+
+            <th> Standard 9th Year</th>
+            <th> Standard 9th</th>
+            <th> Standard 9th Division</th>
+            <th> Standard 9th Roll No</th>
+
+            <th> Standard 10th Year</th>
+            <th> Standard 10th</th>
+            <th> Standard 10th Division</th>
+            <th> Standard 10th Roll No</th>
+
+            <th> Repeater 1 Year</th>
+            <th> Repeater 1 Standard </th>
+            <th> Repeater 1 Division</th>
+            <th> Repeater 1 Roll No</th>
+
+            <th> Repeater 2 Year</th>
+            <th> Repeater 2 Standard </th>
+            <th> Repeater 2 Division</th>
+            <th> Repeater 2 Roll No</th>
+
+            <th> Repeater 3 Year</th>
+            <th> Repeater 3 Standard </th>
+            <th> Repeater 3 Division</th>
+            <th> Repeater 3 Roll No</th>
+
+            <th>Terminate Class</th>
+            <th>Terminate Reason</th>
+            <th>LC Reason of Leaving</th>
+
+            <th> School Leaving Date</th>
+            <th> LC Issue Date</th>
+
+            <th> Action </th>
+          </tr>
+         
+          </thead>
+          <tbody>
+            {% for priml in secAdmData %}
+            {% if priml.admyear == cy %}
+          <tr>
+          
+            <td>{{forloop.counter}}</td>
+            <td>{{priml.prn}}</td>
+            <td>{{priml.lname}}</td>
+            <td>{{priml.fname}}</td>
+            <td>{{priml.faname}}</td>
+            <td>{{priml.admdate}}</td>
+            <td>{{priml.adm_class}}</td>
+
+            <td>{{priml.updateyear5}}</td>
+            <td>{{priml.updateclass5}}</td>
+            <td>{{priml.updatedivision5}}</td>
+            <td>{{priml.updaterollno5}}</td>
+
+            <td>{{priml.updateyear6}}</td>
+            <td>{{priml.updateclass6}}</td>
+            <td>{{priml.updatedivision6}}</td>
+            <td>{{priml.updaterollno6}}</td>
+
+            <td>{{priml.updateyear7}}</td>
+            <td>{{priml.updateclass7}}</td>
+            <td>{{priml.updatedivision7}}</td>
+            <td>{{priml.updaterollno7}}</td>
+
+            <td>{{priml.updateyear8}}</td>
+            <td>{{priml.updateclass8}}</td>
+            <td>{{priml.updatedivision8}}</td>
+            <td>{{priml.updaterollno8}}</td>
+
+            <td>{{priml.updateyear9}}</td>
+            <td>{{priml.updateclass9}}</td>
+            <td>{{priml.updatedivision9}}</td>
+            <td>{{priml.updaterollno9}}</td>
+
+            <td>{{priml.updateyear10}}</td>
+            <td>{{priml.updateclass10}}</td>
+            <td>{{priml.updatedivision10}}</td>
+            <td>{{priml.updaterollno10}}</td>
+
+            <td>{{priml.repyear1}}</td>
+            <td>{{priml.repclass1}}</td>
+            <td>{{priml.repdivision1}}</td>
+            <td>{{priml.reprollno1}}</td>
+
+            <td>{{priml.repyear2}}</td>
+            <td>{{priml.repclass2}}</td>
+            <td>{{priml.repdivision2}}</td>
+            <td>{{priml.reprollno2}}</td>
+
+            <td>{{priml.repyear3}}</td>
+            <td>{{priml.repclass3}}</td>
+            <td>{{priml.repdivision3}}</td>
+            <td>{{priml.reprollno3}}</td>
+
+            <td>{{priml.tclass}}</td>
+            <td>{{priml.treason}}</td>
+            <td>{{priml.lcreason}}</td>
+
+            <td>{{priml.lcdateofleaving}}</td>
+            <td>{{priml.lcissuedate}}</td>
+
+            <td><div class="row">
+              <div class="col-sm-12">
+                <button type="button" class="btn bg-gradient-warning btn-sm" data-toggle="modal" data-target="#modal-info{{priml.user_id}}" style="color: white;">
+                  <i class="fas fa-edit"></i> Edit
+                </button>
+              </div>
+            </div>
+          </td>
+          </tr>
+          <div class="modal fade" id="modal-info{{priml.user_id}}">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">College Academic Edit</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                            <label>Registration Number</label>
+                            <input type="text" class="form-control" value="{{priml.prn}}" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" value="{{priml.lname}}"  disabled>
+                            </div>
+                        </div>
+                   
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                            <label>Fisrt Name</label>
+                            <input type="text" class="form-control" value="{{priml.fname}}" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                            <label>Father Name</label>
+                            <input type="text" class="form-control" value="{{priml.faname}}" disabled>
+                            </div>
+                        </div>
+                       
+                        <form action="{% url 'admissionsec_repeaterview' priml.user_id  %}" method="POST">
+                          {% csrf_token %}
+                        <div class="col-sm-12">
+                          <hr>
+                          <h3>Academic Repeater Section 1</h3>
+                          <hr>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">    
+                                <label>Year</label>
+                                <input type="number" name="repyear1" class="form-control" value="{{priml.repyear1}}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>Standard</label>
+                              <input type="number" name="repclass1" class="form-control" value="{{priml.repclass1}}">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">    
+                                <label>Division</label>
+                                <input type="text" name="repdivision1" class="form-control" value="{{priml.repdivision1}}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Roll No</label>
+                                <input type="number" name="reprollno1" class="form-control" value="{{priml.reprollno1}}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                          <hr>
+                          <h3>Academic Repeater Section 2</h3>
+                          <hr>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">    
+                                <label>Year</label>
+                                <input type="number" name="repyear2" class="form-control" value="{{priml.repyear2}}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>Standard</label>
+                              <input type="number" name="repclass2" class="form-control" value="{{priml.repclass2}}">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">    
+                                <label>Division</label>
+                                <input type="text" name="repdivision2" class="form-control" value="{{priml.repdivision2}}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Roll No</label>
+                                <input type="number" name="reprollno2" class="form-control" value="{{priml.reprollno2}}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                          <hr>
+                          <h3>Academic Repeater Section 3</h3>
+                          <hr>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">    
+                                <label>Year</label>
+                                <input type="number" name="repyear3" class="form-control" value="{{priml.repyear3}}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>Standard</label>
+                              <input type="number" name="repclass3" class="form-control" value="{{priml.repclass3}}">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">    
+                                <label>Division</label>
+                                <input type="text" name="repdivision3" class="form-control" value="{{priml.repdivision3}}" >
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Roll No</label>
+                                <input type="number" name="reprollno3" class="form-control" value="{{priml.reprollno3}}">
+                            </div>
+                        </div>
+
+                    </div>
+
+                <div class="modal-footer">
+                  <input type="submit" value="Save" class="btn bg-gradient-success">
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+          <!-- /.modal -->
+          {% endif %}
+          {% endfor %}
+    
+          </tbody>
+            
+         
+        </table>
+      
+     
+  
+                
+
+                 
+
+ <!-- Master Card Divs -->
+      </div>
+      <!-- /.col -->
+  
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  
+  </div>
+  <!-- /.card-body -->
+
+
+
+
+<!-- Master Card Footer-->
+
+  <div class="card-footer">
+    <div class="row mb">
+      <div class="col-sm-12" style="text-align: end;">
+        <a href="{% url 'acad_export_sec_xls' cy %}" class="btn btn-primary">
+          <i class="fas fa-save"></i> Export-Excel
+        </a> 
+     </div></div>
+  </div>
+</div>
+</div>
+
+
+</section>
+<!-- /.card -->
+<!-- School Addmision End -->
+
+
+
+{% endblock %}
